@@ -11,7 +11,7 @@ MIYTO is an audio-first, level-aware learning-room experience developed for Supe
 - A curated discussion bank documented as 240 topics and 4,800 question slots.
 - Attendance synchronization and session-window workflows.
 - Peer reporting, moderation restrictions, and auditable handling.
-- Administrative room visibility and central audio-monitoring capabilities.
+- Administrative room visibility and session oversight.
 
 ## Engineering validation snapshot
 
