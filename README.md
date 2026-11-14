@@ -39,7 +39,7 @@ These results describe the tested local engineering snapshot and CI revision onl
 
 ## Product access
 
-[MIYTO student experience](https://secondary-session.smi-platform.org/)
+[MIYTO student experience](https://secondary-session.smi-platform.org/) · [Portfolio case study](https://ahmed-gamil-portfolio.ahmedabdulbarim.workers.dev/case-studies/miyto-smart-rooms)
 
 ## Publication boundary
 
