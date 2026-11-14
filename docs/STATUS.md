@@ -20,7 +20,7 @@ The subsequent merge commit `0bea82f` (PR #1) triggered run `43429940694` and fa
 
 **Root cause:** fixed November 8–11 test timestamps were already in the past relative to Workerd's real clock during CI on November 13. The runtime could auto-fire a Durable Object alarm before the test's explicit alarm helper, creating a race in the test fixture.
 
-**Correction:** [PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2), merged as `d2343d2).
+**Correction:** [PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2), merged as `d2343d2`.
 
 - Alarm test timestamps now use future Riyadh-local instants relative to the runtime clock.
 - The primary alarm test explicitly asserts that the alarm helper delivers the scheduled alarm.
