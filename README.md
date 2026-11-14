@@ -30,17 +30,27 @@ The pre-merge QA snapshot was checked on 13 November 2026 on branch `codex/qa-mi
 
 These results describe the tested pre-merge engineering snapshot only. The GitHub Actions run on that snapshot passed on commit `fea2731` (run `43429281744`); an earlier successful run also completed on `217f68c` (run `43332200388`). These results are not a production certification or a live-media end-to-end result.
 
-## Latest main-branch CI check (13 November 2026)
+## Attendance alarm CI issue — resolved (15 November 2026)
 
-The subsequent merge commit `0bea82f` (PR #1) triggered GitHub Actions run `43429940694`, which failed one Worker / Durable Object test:
+The initial main-branch merge commit `0bea82f` (PR #1) triggered CI run `43429940694` and failed `tests/workerd/attendance-sync-alarm-20261106.test.ts`: the test expected `recorded` but observed `pending`.
 
-- **Failing test:** `tests/workerd/attendance-sync-alarm-20261106.test.ts`
-- **Observed result:** the attendance record remained `pending` when the test expected `recorded`.
-- **Unit suite:** 1,201 passed, 62 skipped, 0 failed (1,263 total).
-- **Worker suite:** 179 passed, 2 skipped, 1 failed (182 total).
-- **Build and browser credential scan:** skipped after the Worker-suite failure.
+**Root cause:** the test used fixed November 8–11, 2026 timestamps. When CI ran on November 13, those simulated instants were already in the past relative to Workerd's real clock. Workerd could auto-fire the Durable Object alarm before the test explicitly invoked its alarm helper, making the assertion timing-dependent. This was a test-fixture race, not evidence of a production attendance failure.
 
-This was the latest main-branch CI result checked on 15 November 2026. It is a CI failure, not evidence of a production incident; the merged revision should not be described as CI-green until the attendance-alarm case is resolved and rerun.
+**Fix merged:** [PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2), commit `d2343d2`.
+
+- Replaced hard-coded dates with future Riyadh-local test instants.
+- Restored an explicit assertion that the Durable Object alarm helper delivers the hand-off.
+- Removed the fallback that directly called `alarm()` when the test remained pending.
+- Left attendance application code, production configuration and live data unchanged.
+
+**Post-merge verification:** [GitHub Actions run 43633701186](https://github.com/a7medgamil/miyto-smart-rooms/actions/runs/43633701186) passed on main commit `d2343d2`.
+
+- Cloudflare type generation and TypeScript typecheck: passed.
+- Unit tests: 1,263 total; the local full-suite run recorded 1,202 passed and 61 skipped.
+- Worker / Durable Object tests: 31 files, 180 passed, 2 skipped.
+- Production build and browser credential scan: passed.
+
+The fix makes the CI alarm test deterministic. It does not constitute a production deployment, a live attendance bridge test, a live SFU test, or a 400-participant capacity certification.
 
 ## Explicit limitations
 
