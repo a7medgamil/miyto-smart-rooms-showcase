@@ -1,8 +1,18 @@
-# MIYTO Smart Rooms — Product Case Study
+# MIYTO Smart Rooms â€” Product Case Study
 
 MIYTO is an audio-first, level-aware learning-room experience developed for Superior Multiskills Institute (SMI). It structures learner practice into paired rooms, guided silent-practice rounds, and moderated speaking discussions.
 
-> Public documentation only. No application source, student records, production credentials, internal endpoints, or deployment configuration are included.
+> Public MIYTO documentation and an independent synthetic demo only. No MIYTO application source, student records, production credentials, internal endpoints, or production deployment configuration are included.
+
+## Independent runnable engineering demo
+
+**Independent synthetic demonstration â€” not MIYTO production source, not a live audio service, not a load test.**
+
+[Explore Room State Lab](demo/room-state-lab/README.md): an original local web demo with fake participants, level-aware two-person rooms, a virtual clock and simulated attendance. No MIYTO application source, real records, original assets or production integrations are used. [Engineering notes](docs/DEMO-ENGINEERING-NOTES.md) explain the boundaries; the historical MIYTO validation figures below are separate evidence and do not apply to this demo.
+
+[![Independent Room State Lab — a synthetic engineering demonstration](demo/room-state-lab/assets/desktop-preview.png)](demo/room-state-lab/README.md)
+
+[Independent browser QA report](demo/room-state-lab/BROWSER_QA_REPORT.md) · [Mobile screenshot](demo/room-state-lab/assets/mobile-preview.png). The screenshots are generated from a simulated, fictional-user demo, not the MIYTO production interface.
 
 ## Product scope
 
@@ -30,11 +40,11 @@ The pre-merge QA snapshot was checked on 13 November 2026 on branch `codex/qa-mi
 
 These results describe the tested pre-merge engineering snapshot only. The GitHub Actions run on that snapshot passed on commit `fea2731` (run `43429281744`); an earlier successful run also completed on `217f68c` (run `43332200388`). These results are not a production certification or a live-media end-to-end result.
 
-## Attendance alarm CI issue — resolved (15 November 2026)
+## Attendance alarm CI issue â€” resolved (15 November 2026)
 
 The initial main-branch merge commit `0bea82f` (PR #1) triggered CI run `43429940694` and failed `tests/workerd/attendance-sync-alarm-20261106.test.ts`: the test expected `recorded` but observed `pending`.
 
-**Root cause:** the test used fixed November 8–11, 2026 timestamps. When CI ran on November 13, those simulated instants were already in the past relative to Workerd's real clock. Workerd could auto-fire the Durable Object alarm before the test explicitly invoked its alarm helper, making the assertion timing-dependent. This was a test-fixture race, not evidence of a production attendance failure.
+**Root cause:** the test used fixed November 8â€“11, 2026 timestamps. When CI ran on November 13, those simulated instants were already in the past relative to Workerd's real clock. Workerd could auto-fire the Durable Object alarm before the test explicitly invoked its alarm helper, making the assertion timing-dependent. This was a test-fixture race, not evidence of a production attendance failure.
 
 **Fix merged:** [PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2), commit `d2343d2`.
 
@@ -61,10 +71,10 @@ The fix makes the CI alarm test deterministic. It does not constitute a producti
 
 ## Product access
 
-[MIYTO student experience](https://secondary-session.smi-platform.org/) · [Portfolio case study](https://ahmed-gamil-portfolio.ahmedabdulbarim.workers.dev/case-studies/miyto-smart-rooms)
+[MIYTO student experience](https://secondary-session.smi-platform.org/) آ· [Portfolio case study](https://ahmed-gamil-portfolio.ahmedabdulbarim.workers.dev/case-studies/miyto-smart-rooms)
 
 ## Publication boundary
 
 The application source remains in a separate private repository. No client or learner data is published.
 
-© 2026 Superior Multiskills Institute. All rights reserved.
+آ© 2026 Superior Multiskills Institute. All rights reserved.

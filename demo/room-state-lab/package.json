@@ -1,0 +1,13 @@
+{
+  "name": "independent-room-state-lab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Independent synthetic room-state demonstration",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test",
+    "check": "node scripts/check.mjs",
+    "start": "node server.mjs"
+  }
+}
