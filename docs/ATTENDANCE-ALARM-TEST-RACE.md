@@ -92,7 +92,7 @@ The recorded **post-merge main-branch workflow** [run 43633701186](https://githu
 - [MIYTO public case-study README](../README.md) — the existing public snapshot and documented correction.
 - [Private PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2) — authenticated code-review evidence.
 - [Post-merge CI 43633701186](https://github.com/a7medgamil/miyto-smart-rooms/actions/runs/43633701186) — authenticated successful run, not necessarily visible to an unauthenticated recruiter.
-- The new [independent Room State Lab](../demo/room-state-lab/README.md) is a **different original synthetic demo** on a separate draft PR; it does not test this Cloudflare attendance bridge.
+- The new [independent Room State Lab draft PR](https://github.com/a7medgamil/miyto-smart-rooms-showcase/pull/1) is a **different original synthetic demo** on a separate draft PR; it does not test this Cloudflare attendance bridge.
 
 **Recruiter visibility note:** a reviewer without private-repository access can inspect this public-safe narrative and its limitations but cannot independently inspect the restricted CI logs or source. Do not label private-run links as public verification.
 
