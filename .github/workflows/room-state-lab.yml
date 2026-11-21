@@ -1,0 +1,28 @@
+name: Independent room-state demo
+
+on:
+  push:
+    paths: ['demo/room-state-lab/**', '.github/workflows/room-state-lab.yml']
+  pull_request:
+    paths: ['demo/room-state-lab/**', '.github/workflows/room-state-lab.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: demo/room-state-lab
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - run: npm run check
