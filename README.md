@@ -48,14 +48,14 @@ The initial main-branch merge commit `0bea82f` (PR #1) triggered CI run `4342994
 
 **Root cause:** the test used fixed November 8–11, 2026 timestamps. When CI ran on November 13, those simulated instants were already in the past relative to Workerd's real clock. Workerd could auto-fire the Durable Object alarm before the test explicitly invoked its alarm helper, making the assertion timing-dependent. This was a test-fixture race, not evidence of a production attendance failure.
 
-**Fix merged:** [PR #2](https://github.com/a7medgamil/miyto-smart-rooms/pull/2), commit `d2343d2`.
+**Fix merged in the private application repository:** PR #2, commit `d2343d2`. Private source and review history are not accessible to an unsigned-in recruiter; the public postmortem below provides the independently readable explanation.
 
 - Replaced hard-coded dates with future Riyadh-local test instants.
 - Restored an explicit assertion that the Durable Object alarm helper delivers the hand-off.
 - Removed the fallback that directly called `alarm()` when the test remained pending.
 - Left attendance application code, production configuration and live data unchanged.
 
-**Post-merge verification:** [GitHub Actions run 43633701186](https://github.com/a7medgamil/miyto-smart-rooms/actions/runs/43633701186) passed on main commit `d2343d2`.
+**Post-merge verification:** the private application's GitHub Actions run `43633701186` passed on main commit `d2343d2` (maintainer-only evidence, not a publicly inspectable check). The independent public Room State Lab and its linked CI above remain separately accessible.
 
 [Read the public postmortem](docs/ATTENDANCE-ALARM-TEST-RACE.md) for the failure sequence, root cause, deterministic fixture fix and limits of the verification.
 
